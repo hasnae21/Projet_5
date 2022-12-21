@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>TP_Basic</title>
+        <title>TP_Standard</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -44,7 +44,8 @@
                             <form action="{{url('store')}}" method="POST">
                                 @csrf
                                 <label for="tash">Ajouter une Tache :</label>
-                                <input id="tash" name="Name" class="form-control lead" type="text" required>
+                                {{-- <input id="tash" class="form-control lead" type="text" required> --}}
+                                <input id="tash" name="task_name" class="form-control lead" type="text">
                                 <button class="btn btn-success">Ajouter</button>
                             </form>
                         </div>
