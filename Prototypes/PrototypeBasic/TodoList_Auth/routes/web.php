@@ -17,7 +17,6 @@ use App\Http\Controllers\TestController;
 |
 */ 
 
-Route::get('/dashboard',[TestController::class ,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,9 +24,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); 
 });
 
+Route::get('/dashboard',[TestController::class ,'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 Route::get('/', [todolistController::class, 'index']);
 Route::post('/store', [todolistController::class, 'store']);
-
-
 
 require __DIR__.'/auth.php';
