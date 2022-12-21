@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\todolistController;
+use App\Http\Controllers\TestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,26 +15,19 @@ use App\Http\Controllers\todolistController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*/ 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[TestController::class ,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy'); 
 });
 
+Route::get('/', [todolistController::class, 'index']);
+Route::post('/store', [todolistController::class, 'store']);
 
 
-
-Route::get('/todolist', [todolistController::class, 'index'])->name('todolist.index');
-Route::post('/add', [todolistController::class, 'store'])->name('todolist.store');
 
 require __DIR__.'/auth.php';

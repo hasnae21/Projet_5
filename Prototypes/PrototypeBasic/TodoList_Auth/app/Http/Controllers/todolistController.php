@@ -12,24 +12,16 @@ class todolistController extends Controller
     public function index()
     {
         $tasks = Task::all();   
-         return view('todolist',compact('tasks'));
-    }
-
-    public function create()
-    {
-        //
+        // affichage on Welocome
+         return view('welcome', compact('tasks'));
     }
 
     public function store(Request $request)
     {
-        if (Auth::check()) {
             $task = new Task();
             $task->task_name = $request->Name ;
             $task->save();
-             return redirect('/todolist');
-        }
-        else {
-            return redirect('/register');
-        }
+             return redirect('/dashboard');
     }
+    
 }
