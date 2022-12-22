@@ -9,17 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    <form action="{{url('store')}}" method="POST">
+                        @csrf
+                        Ajouter une Tache : <br>
+                        <input name="task_name" class="form-control lead" type="text">
+                        <button class="btn btn-success">Ajouter</button>
+                    </form>
                     @if(session()->get('success'))
                     <div class="alert alert-success">
                       {{ session()->get('success') }}  
                     </div>
                     @endif
-                    <form action="{{url('store')}}" method="POST">
-                        @csrf
-                        Ajouter une Tache :
-                        <input name="task_name" class="form-control lead" type="text">
-                        <button class="btn btn-success">Ajouter</button>
-                    </form>
                 </div>
             </div>
         </div>
